@@ -1,0 +1,21 @@
+from collections import deque
+
+
+def bfs(start, end, graph):
+    search_queue = deque()
+    search_queue += graph[start]
+    checked = [start]
+    while search_queue:
+        elem = search_queue.popleft()
+        if elem not in checked:
+            if elem == end:
+                return True
+            else:
+                search_queue += graph[elem]
+                checked.append(elem)
+    return False
+
+
+if __name__ == '__main__':
+    g = {1: [2, 3], 2: [1], 3: [4], 4: []}
+    print(bfs(1, 4, g))
